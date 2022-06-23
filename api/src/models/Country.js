@@ -27,11 +27,15 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         set(value) {
-          this.setDataValue('capital', value? value.join(', ') : 'No Capital');
+          this.setDataValue('capital', value? value.join(', ') :'No Capital');
         }
       },
       subregion: {
         type: DataTypes.STRING,
+        allowNull: true,
+        set(value) {
+          this.setDataValue('subregion', value? value :'No Subregion');
+        }
       },
       area: {
         type: DataTypes.INTEGER,
