@@ -45,22 +45,13 @@ router.post("/activities", async (req, res) => {
     duration,
     season,
   });
- let countrieDB = await Country.findAll({
+  let countrieDB = await Country.findAll({
     where: {
       id: { [Op.iLike]: countries },
     },
   });
   ActivitieCreated.addCountries(countrieDB);
   res.json({ msj: "Se creo la actividad" });
-})
-
-
-
-
-
-
-
-
-
+});
 
 module.exports = router;
