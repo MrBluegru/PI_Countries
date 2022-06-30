@@ -9,3 +9,11 @@ export function getCountries() {
     });
   };
 }
+
+export function filterCountriesByContinent(payload) {
+  return {
+    type: "FILTER_COUNTRIES_BY_CONTINENT",
+    payload,
+  };
+}
+

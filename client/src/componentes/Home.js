@@ -44,13 +44,21 @@ export default function Home() {
         <NavBar />
       </div>
 
+      <div className="paginado">
+        <Paginado
+          key={paginado}
+          countriesPerPage={countriesPerPage}
+          allCountries={allCountries.length}
+          paginado={paginado}
+        />
+      </div>
 
       <div className="cards">
         {currentCountries?.map((e) => {
           return (
             <Link to={"/home/" + e.name}>
               <Card
-                key={e.name}
+                key={e.id}
                 flag={e.flag}
                 name={e.name}
                 continent={e.continent}
@@ -58,13 +66,6 @@ export default function Home() {
             </Link>
           );
         })}
-      </div>
-      <div className="paginado">
-        <Paginado
-          countriesPerPage={countriesPerPage}
-          allCountries={allCountries.length}
-          paginado={paginado}
-        />
       </div>
     </div>
   );

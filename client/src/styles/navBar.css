@@ -1,4 +1,10 @@
 .nav_bar{
     display: flex;
+    margin-right: 10px;
+    align-items: stretch;
     justify-content: space-between;
 }
+
+/* .btn_crearA{
+    
+} */

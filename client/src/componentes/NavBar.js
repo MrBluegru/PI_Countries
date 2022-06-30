@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
-import { getCountries } from "../actions";
+import { getCountries, filterCountriesByContinent } from "../actions";
 import "../styles/navBar.css";
 
 export default function NavBar() {
@@ -11,6 +11,11 @@ export default function NavBar() {
   function handleclick(e) {
     e.preventDefault();
     dispatch(getCountries());
+  }
+
+  function handleFilterContinent(e) {
+    e.preventDefault();
+    dispatch(filterCountriesByContinent(e.target.value));
   }
 
   return (
@@ -37,21 +42,24 @@ export default function NavBar() {
           <option value="desc">Descendente</option>
         </select>
         <select>
-          <option value="poblacion">poblacion</option>
+          <option value="poblacion">Poblacion</option>
+          <option value="poblacion">Mayor a menor</option>
+          <option value="poblacion">Menor a mayor</option>
         </select>
       </div>
 
       <div className="filter_C_AT">
-        <select>
-          <option value="ame">Americas</option>
-          <option value="oce">Oceanía</option>
-          <option value="afr">Africa</option>
-          <option value="eur">Europe</option>
-          <option value="asi">Asia</option>
-          <option value="ant">Antarctic</option>
+        <select onChange={e => handleFilterContinent(e)}>
+          <option value="All">Continentes</option>
+          <option value="Americas">America</option>
+          <option value="Oceania">Oceanía</option>
+          <option value="Africa">Africa</option>
+          <option value="Europe">Europa</option>
+          <option value="Asia">Asia</option>
+          <option value="Antarctic">Antártida</option>
         </select>
         <select>
-          <option value="actividad"> tipo Actividad turística</option>
+          <option value="actividad">Actividad turística</option>
         </select>
       </div>
     </div>
