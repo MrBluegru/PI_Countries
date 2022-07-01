@@ -1,12 +1,19 @@
-import React from "react";
-import { useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCountries, filterCountriesByContinent } from "../actions";
+import {
+  getCountries,
+  filterCountriesByContinent,
+  orderByName,
+} from "../actions";
+import SearchBar from "./SearchBar.js";
 import "../styles/navBar.css";
 
 export default function NavBar() {
-
   const dispatch = useDispatch();
+  const [orden, setOrden] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   function handleclick(e) {
     e.preventDefault();
@@ -18,8 +25,19 @@ export default function NavBar() {
     dispatch(filterCountriesByContinent(e.target.value));
   }
 
+  function handleOrderName(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenando ${e.target.value}`);
+  }
+
   return (
     <div className="nav_bar">
+      <div className="nav_search">
+        <SearchBar />
+      </div>
+
       <div className="recargarCountries">
         <button
           onClick={(e) => {
@@ -30,26 +48,27 @@ export default function NavBar() {
         </button>
       </div>
 
-      <div className="btn_crearA">
+      <div className="act">
         <button>
-          <Link to="/Activitie">Crear Actividad</Link>
+          <Link className="link" to="/Activities">Crear Actividad</Link>
         </button>
       </div>
 
       <div className="filter_OA_P">
-        <select>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
+        <select onChange={(e) => handleOrderName(e)}>
+          <option value="">Ordenar: </option>
+          <option value="asc">Ascendente(A-Z)</option>
+          <option value="desc">Descendente(Z-A)</option>
         </select>
         <select>
-          <option value="poblacion">Poblacion</option>
-          <option value="poblacion">Mayor a menor</option>
-          <option value="poblacion">Menor a mayor</option>
+          <option value="">Filtrar por población</option>
+          <option value="+ a -">Mayor a menor</option>
+          <option value="- a +">Menor a mayor</option>
         </select>
       </div>
 
       <div className="filter_C_AT">
-        <select onChange={e => handleFilterContinent(e)}>
+        <select onChange={(e) => handleFilterContinent(e)}>
           <option value="All">Continentes</option>
           <option value="Americas">America</option>
           <option value="Oceania">Oceanía</option>
@@ -59,7 +78,7 @@ export default function NavBar() {
           <option value="Antarctic">Antártida</option>
         </select>
         <select>
-          <option value="actividad">Actividad turística</option>
+          <option value="actividad">Actividades turísticas</option>
         </select>
       </div>
     </div>

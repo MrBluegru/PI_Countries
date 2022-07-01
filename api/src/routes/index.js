@@ -54,4 +54,11 @@ router.post("/activities", async (req, res) => {
   res.json({ msj: "Se creo la actividad" });
 });
 
+router.get("/activities", async (req, res) => {
+  const activities = await Activity.findAll({
+    include: [{ model: Country }],
+  });
+  res.json(activities);
+});
+
 module.exports = router;

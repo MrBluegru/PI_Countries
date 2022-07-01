@@ -9,7 +9,9 @@ const LandingPage = () => {
       <Link to="/home">
         <button className="btn-landing">Go!</button>
       </Link>
-      <a className="link-name" href="https://www.linkedin.com/in/mrbluegru/" target="_blank" rel="noopener noreferrer"> by Mr. Blue </a>
+      <div>
+        <a className="link-name" href="https://www.linkedin.com/in/mrbluegru/" target="_blank" > by Mr. Blue </a>
+      </div>
     </div>
   );
 };

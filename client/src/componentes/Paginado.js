@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/paginado.css";
 
 export default function Paginado({ countriesPerPage, allCountries, paginado }) {
@@ -14,9 +15,9 @@ export default function Paginado({ countriesPerPage, allCountries, paginado }) {
         {pageNumbers &&
           pageNumbers.map((number) => (
             <div key={number} className="page-item">
-              <a key={number} onClick={() => paginado(number)}>
+              <button onClick={() => paginado(number)}>
                 {number}
-              </a>
+              </button>
             </div>
           ))}
       </div>

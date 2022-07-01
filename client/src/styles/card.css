@@ -16,3 +16,18 @@
     width: 100%;
     
 }
+
+.name {
+    text-decoration: none;
+    color: black
+  }
+
+.name_link{
+    text-decoration: none;
+    color: black
+}
+
+.continent{
+    text-decoration: none;
+    color: black
+  }

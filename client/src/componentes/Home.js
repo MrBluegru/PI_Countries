@@ -46,7 +46,6 @@ export default function Home() {
 
       <div className="paginado">
         <Paginado
-          key={paginado}
           countriesPerPage={countriesPerPage}
           allCountries={allCountries.length}
           paginado={paginado}
@@ -56,9 +55,10 @@ export default function Home() {
       <div className="cards">
         {currentCountries?.map((e) => {
           return (
-            <Link to={"/home/" + e.name}>
+            <Link key={e.id} to={"/home/" + e.name}>
               <Card
                 key={e.id}
+                id= {e.id}
                 flag={e.flag}
                 name={e.name}
                 continent={e.continent}
