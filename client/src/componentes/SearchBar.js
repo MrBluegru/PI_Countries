@@ -14,23 +14,22 @@ export default function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getCountriesByName(name))
-    setName("")
-   
+    dispatch(getCountriesByName(name));
+    setName("");
   }
 
   return (
     <div className="search_bar">
-      <input
-        type="text"
-        placeholder="Pais.."
-        onChange={(e) => {
-          handleChange(e);
-        }}
-      />
-      <button
-      type="submit"
-      onClick={(e) => handleSubmit(e)}>Buscar</button>
+      <form onClick={(e) => handleSubmit(e)}>
+        <input
+          type="text"
+          placeholder="Pais.."
+          onChange={(e) => {
+            handleChange(e);
+          }}
+          />
+          <button>Buscar</button>
+      </form>
     </div>
   );
 }

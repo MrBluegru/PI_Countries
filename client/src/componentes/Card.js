@@ -4,16 +4,16 @@ import "../styles/card.css";
 
 export default function Card({ id, flag, name, continent }) {
   return (
-    <div className="card" key={id}>
-      <div className="flag">
-        <img src={flag} alt="flag" />
-      </div>
-      <div>
-        <Link className="name_link" to={`/countries/${id}`}>
+    <Link className="link_name" to={`/countrie/${id}`}>
+      <div className="card" key={id}>
+        <div className="flag">
+          <img src={flag} alt="flag" />
+        </div>
+        <div>
           <h2 className="name">{name}</h2>
-        </Link>
-        <h3 className="continent">{continent}</h3>
+          <h3 className="continent">{continent}</h3>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

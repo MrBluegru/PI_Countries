@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getCountries, CreateActivities } from "../actions";
+import { Link, useHistory } from "react-router-dom";
+import { getCountries, createActivities } from "../actions";
 import "../styles/createAct.css";
 
 export default function CreateAct() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
+  const history = useHistory();
 
   const [imput, setImput] = useState({
     name: "",
@@ -18,7 +19,9 @@ export default function CreateAct() {
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
+  }, 
+  // eslint-disable-next-line
+  []);
   return (
     <div className="createAct">
       <div className="titulo">
@@ -55,14 +58,21 @@ export default function CreateAct() {
             </select>
 
             <label>Duración</label>
-            <input
-              type="text"
+            <select
+              id="duration"
               name="duration"
               value={imput.duration}
               onChange={(e) =>
                 setImput({ ...imput, [e.target.name]: e.target.value })
               }
-            />
+            >
+              <option value="">Seleccione</option>
+              <option value="Short">1-3 horas</option>
+              <option value="Medium">3-6 horas</option>
+              <option value="Long">6-12 horas</option>
+              <option value="VeryLong">12-24 horas</option>
+            </select>
+
             <label>Temporada</label>
             <select
               id="season"
@@ -99,7 +109,9 @@ export default function CreateAct() {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(CreateActivities(imput));
+                dispatch(createActivities(imput));
+                history.push("/home");
+                alert("Actividad creada");
               }}
             >
               Crear Actividad

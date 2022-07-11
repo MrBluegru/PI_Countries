@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../styles/paginado.css";
 
 export default function Paginado({ countriesPerPage, allCountries, paginado }) {

@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/landingP.css";
 import { Link } from "react-router-dom";
-
 const LandingPage = () => {
   return (
     <div className="landing-page">
@@ -10,7 +9,7 @@ const LandingPage = () => {
         <button className="btn-landing">Go!</button>
       </Link>
       <div>
-        <a className="link-name" href="https://www.linkedin.com/in/mrbluegru/" target="_blank" > by Mr. Blue </a>
+        <a className="link-name" href="https://www.linkedin.com/in/mrbluegru/" target="_blank" rel="noreferrer"> by Mr. Blue </a>
       </div>
     </div>
   );

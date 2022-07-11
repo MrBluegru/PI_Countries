@@ -5,6 +5,8 @@ import {
   getCountries,
   filterCountriesByContinent,
   orderByName,
+  orderByPopulation,
+  filterByActivity,
 } from "../actions";
 import SearchBar from "./SearchBar.js";
 import "../styles/navBar.css";
@@ -13,8 +15,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const [orden, setOrden] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-
-
+// eslint-disable-next-line
   function handleclick(e) {
     e.preventDefault();
     dispatch(getCountries());
@@ -29,12 +30,23 @@ export default function NavBar() {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenando ${e.target.value}`);
+    setOrden(e.target.value);
   }
+  function handleOrderPopul(e) {
+    e.preventDefault();
+    dispatch(orderByPopulation(e.target.value));
+    setCurrentPage(1);
+    setOrden(e.target.value);
+  }
+  function handleFilterAct(e) {
+    e.preventDefault();
+    dispatch(filterByActivity(e.target.value));
+  }
+
 
   return (
     <div className="nav_bar">
-      <div className="nav_search">
+      <div className="nav_search">    
         <SearchBar />
       </div>
 
@@ -50,24 +62,29 @@ export default function NavBar() {
 
       <div className="act">
         <button>
-          <Link className="link" to="/Activities">Crear Actividad</Link>
+          <Link className="link" to="/Activities">
+            Crear Actividad
+          </Link>
         </button>
       </div>
 
-      <div className="filter_OA_P">
+      <div className="order_name">
         <select onChange={(e) => handleOrderName(e)}>
           <option value="">Ordenar: </option>
           <option value="asc">Ascendente(A-Z)</option>
           <option value="desc">Descendente(Z-A)</option>
         </select>
-        <select>
+      </div>
+
+      <div className="order_population">
+        <select onChange={(e) => handleOrderPopul(e)}>
           <option value="">Filtrar por población</option>
-          <option value="+ a -">Mayor a menor</option>
-          <option value="- a +">Menor a mayor</option>
+          <option value="populationDesc">Mayor a menor</option>
+          <option value="populationAsc">Menor a mayor</option>
         </select>
       </div>
 
-      <div className="filter_C_AT">
+      <div className="filter_continent">
         <select onChange={(e) => handleFilterContinent(e)}>
           <option value="All">Continentes</option>
           <option value="Americas">America</option>
@@ -77,16 +94,15 @@ export default function NavBar() {
           <option value="Asia">Asia</option>
           <option value="Antarctic">Antártida</option>
         </select>
-        <select>
-          <option value="actividad">Actividades turísticas</option>
+      </div>
+
+      <div className="filter_activities">
+        <select className="filt_act" onChange={(e) => handleFilterAct(e)}>
+          <option value="All">Filtrar por actividad</option>
+          <option value="Hiking">Caminar</option>
+          <option value="Biking">Bicicleta</option>
         </select>
       </div>
     </div>
   );
 }
-
-/*[ ] Botones/Opciones para filtrar por continente y por tipo de 
-actividad turística
-[ ] Botones/Opciones para ordenar tanto ascendentemente como
- descendentemente 
-los países por orden alfabético y por cantidad de población*/
